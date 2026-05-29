@@ -1,15 +1,15 @@
-{
-  "name": "BedLink Spitalbettenvermittlung",
-  "short_name": "BedLink",
-  "description": "PWA für Spitalbetten, Statusverwaltung und Reservierungen mit Supabase.",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#07131d",
-  "theme_color": "#0b2230",
-  "orientation": "portrait-primary",
-  "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
-  ]
-}
+# BedLink – Spitalbettenvermittlung
+
+BedLink ist eine GitHub-Pages-App zur Erfassung, Filterung und Reservation von Spitalbetten mit Supabase-Anbindung.
+
+## GitHub Pages
+
+Die App läuft direkt aus dem Repo-Root über `index.html`.
+
+```text
+https://hinderio.github.io/CMCSix/
+```
+
+## Supabase
+
+Führe `supabase.sql` im Supabase SQL Editor aus und prüfe danach `supabase-config.js`.
