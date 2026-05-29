@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="BedLink">
+  <defs>
+    <linearGradient id="bg" x1="24" y1="20" x2="228" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#47e4c2"/>
+      <stop offset="1" stop-color="#0c3c55"/>
+    </linearGradient>
+    <linearGradient id="bed" x1="52" y1="96" x2="208" y2="174" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#dff8f3" stop-opacity="0.86"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  <circle cx="194" cy="60" r="24" fill="#ffffff" opacity="0.17"/>
+  <path d="M56 92c0-10 8-18 18-18h36c17 0 30 13 30 30v10h54c16 0 30 13 30 30v50h-24v-22H56v22H32V92h24Z" fill="url(#bed)"/>
+  <rect x="66" y="92" width="52" height="34" rx="13" fill="#0b3146" opacity="0.72"/>
+  <rect x="56" y="136" width="144" height="22" rx="11" fill="#0b3146" opacity="0.33"/>
+  <path d="M172 58v54M145 85h54" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+</svg>
