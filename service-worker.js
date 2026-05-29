@@ -1,42 +1,24 @@
-# Security Setup für BedLink
+const CACHE_NAME = 'bedlink-cache-v2-20260529';
+const APP_SHELL = ['./','./index.html','./style.css','./app.js','./supabase-config.js','./manifest.json','./icons/icon.svg'];
 
-## Supabase Auth
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
+  self.skipWaiting();
+});
 
-Die App verwendet den öffentlichen Supabase Anon Key im Browser. Das ist bei Supabase normal. Schutz entsteht durch Auth + Row Level Security, nicht durch Geheimhaltung des Anon Keys.
+self.addEventListener('activate', event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))));
+  self.clients.claim();
+});
 
-Empfohlen:
-
-1. Email/Password aktivieren.
-2. Öffentliche Signups deaktivieren oder nur kontrolliert einladen.
-3. Interne User in Supabase Auth anlegen.
-4. In URL Configuration alle erlaubten Redirect URLs pflegen.
-
-## RLS-Modell
-
-`supabase.sql` aktiviert RLS für:
-
-- `hospitals`
-- `hospital_beds`
-- `bed_reservations`
-- `bed_activity_log`
-
-Alle Daten sind für authentifizierte User der gemeinsamen Spital-Koordinationsinstanz sichtbar und pflegbar. Anonyme Nutzer erhalten keinen Remote-Zugriff; die App läuft dann nur im lokalen Demo-Modus.
-
-Für mehrere Organisationen kann das Schema später minimal-invasiv um `organization_id`, Rollen und engere Policies erweitert werden.
-
-## Patientendaten
-
-Die App ist absichtlich auf Referenzen ausgelegt:
-
-- `patient_reference` statt Klarnamen
-- kurze operative Notizen
-- keine unnötigen personenbezogenen Daten in Audit Logs
-
-Für produktive medizinische Daten müssen Datenschutz-, Rollen-, Logging- und Aufbewahrungsregeln der Organisation geprüft werden.
-
-## GitHub Pages
-
-- Nur statische Dateien veröffentlichen.
-- Keine Service Role Keys ins Repository legen.
-- Nur den Anon Key im Frontend verwenden.
-- Nach Änderungen an HTML/CSS/JS wurde die Service-Worker-Cache-Version erhöht; nach Deployment Hard Refresh/PWA-Neustart durchführen.
+self.addEventListener('fetch', event => {
+  const request = event.request;
+  if (request.method !== 'GET') return;
+  const url = new URL(request.url);
+  if (url.origin !== location.origin) return;
+  if (request.mode === 'navigate') {
+    event.respondWith(fetch(request).catch(() => caches.match('./index.html')));
+    return;
+  }
+  event.respondWith(caches.match(request).then(cached => cached || fetch(request)));
+});
