@@ -1,6 +1,17 @@
-window.BEDLINK_SUPABASE_CONFIG = Object.freeze({
-  // Öffentlicher Supabase Anon Key aus dem bereitgestellten Habits-ZIP übernommen.
-  // Bei einem neuen Supabase-Projekt hier URL und Anon Key ersetzen.
-  url: 'https://spzytdyottsicwmmwsbl.supabase.co',
-  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwenl0ZHlvdHRzaWN3bW13c2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NDE5MzksImV4cCI6MjA5MjExNzkzOX0.9Ku9KU102YaX1UhWVPntA6q7vzyvo7rCzgn68pLS9xU'
-});
+window.BEDLINK_SUPABASE_SQL_NOTE = `Das vollständige produktive SQL Statement liegt in supabase.sql.
+
+Setup:
+1. Supabase SQL Editor öffnen.
+2. supabase.sql komplett einfügen und ausführen.
+3. Email Auth aktivieren.
+4. Site URL und Redirect URL auf https://hinderio.github.io/CMCSix/ setzen.
+
+Tabellen:
+- hospitals
+- hospital_beds
+- bed_reservations
+- bed_activity_log
+
+RPC:
+- reserve_bed_for_request(p_request_id uuid, p_bed_id uuid)
+`;
