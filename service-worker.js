@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bedlink-cache-v2-20260529';
+const CACHE_NAME = 'bedlink-cache-v3-20260529';
 const APP_SHELL = ['./','./index.html','./style.css','./app.js','./supabase-config.js','./manifest.json','./icons/icon.svg'];
 
 self.addEventListener('install', event => {
